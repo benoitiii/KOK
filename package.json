@@ -1,0 +1,15 @@
+{
+  "name": "benoit-webpage",
+  "version": "1.0.0",
+  "description": "This project creates a simple web page that plays background music automatically upon opening, displays a chosen image in the center, and features the name \"Benoit\" prominently.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

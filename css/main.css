@@ -1,0 +1,362 @@
+/* Estilo general */
+body {
+    cursor: url('../assets/images/mi-cursor.png'), auto;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+    background: url('../assets/images/background.gif') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Estilo para el botón "Ethereal" */
+/* Efecto de niebla en el botón */
+#start-btn {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 28px;
+    color: #d0d0d0; /* Color gris claro para mejorar contraste con fondo oscuro */
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro */
+    border: none;
+    padding: 20px 40px;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 255, 255, 0.3); /* Sombra sutil */
+    transition: all 0.4s ease;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5)); /* Brillo suave */
+    position: relative;
+    overflow: hidden;
+}
+
+#start-btn:hover {
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo más oscuro */
+    transform: scale(1.1); /* Efecto de escalado al pasar el mouse */
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.4), 0 0 35px rgba(0, 0, 0, 0.7); /* Sombra más profunda */
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.7)); /* Resplandor más tenue */
+}
+
+/* Niebla al pasar el mouse */
+#start-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.2);
+    filter: blur(8px);
+    transform: scale(1.5);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+#start-btn:hover::before {
+    opacity: 1; /* Activamos la niebla al pasar el mouse */
+}
+
+
+/* Estilo para el contenido */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    opacity: 0;
+    transition: opacity 1.5s ease, transform 1s ease;
+}
+
+/* Mostrar el contenido con desvanecimiento */
+.container.show {
+    display: block;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Estilo para el título */
+/* Estilo para el título con efecto misterioso y depresivo */
+h1 {
+    color: #e0e0e0;
+    font-size: 48px;
+    font-family: 'Courier New', Courier, monospace;
+    text-shadow: 
+        2px 2px 8px rgba(0, 0, 0, 0.9), 
+        0 0 25px rgba(255, 255, 255, 0.8),
+        0 0 50px rgba(255, 255, 255, 0.9),
+        0 0 70px rgba(0, 0, 0, 0.8);
+    opacity: 0; /* Inicialmente invisible */
+    animation: fadeInOut 4s ease-in-out, shake 2s infinite alternate; /* Dos animaciones */
+    transition: opacity 2s ease;
+}
+
+/* Animación de desvanecimiento para crear un efecto de aparición y desaparición */
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px); /* Desplazamiento hacia arriba al inicio */
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(0); /* Vuelve a su posición original */
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(30px); /* Desplazamiento hacia abajo */
+    }
+}
+
+/* Animación de parpadeo / vibración para el efecto misterioso */
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+        opacity: 0.7;
+    }
+    25% {
+        transform: translateX(-5px);
+        opacity: 1;
+    }
+    50% {
+        transform: translateX(5px);
+        opacity: 0.7;
+    }
+    75% {
+        transform: translateX(-5px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 0.7;
+    }
+}
+
+/* Estilo para la imagen de perfil */
+.profile-pic {
+    display: block;
+    margin: 20px auto;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    position: relative;
+    border: 4px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 
+        0 0 15px rgba(0, 0, 0, 0.8),
+        0 0 25px rgba(255, 255, 255, 0.8),
+        0 0 35px rgba(255, 255, 255, 0.6),
+        0 0 50px rgba(0, 0, 0, 0.7);
+    opacity: 1; /* Hacemos visible la imagen desde el inicio */
+    transition: opacity 2s ease, transform 0.3s ease, filter 0.3s ease; /* Aseguramos que el filtro, transformación y opacidad se animen */
+    filter: grayscale(50%) blur(2px); /* Efecto depresivo: imagen en escala de grises y desenfocada */
+}
+
+/* Efecto cuando el ratón pasa sobre la imagen */
+.profile-pic:hover {
+    transform: scale(1.1); /* Efecto de agrandamiento */
+    filter: grayscale(0%) blur(0); /* Eliminamos el desenfoque y el color gris */
+    box-shadow: 
+        0 0 25px rgba(0, 0, 0, 0.8),
+        0 0 35px rgba(255, 255, 255, 1),
+        0 0 45px rgba(255, 255, 255, 1); /* Sombra más prominente cuando se agranda */
+}
+
+/* Estilo para el texto @benoiti (con efectos de aparición) */
+.discord-handle {
+    color: #e0e0e0;
+    font-size: 20px;
+    margin-top: 10px;
+    opacity: 0; /* Inicialmente invisible */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Efecto suave */
+    transform: translateY(20px); /* Empujamos hacia abajo para un efecto de aparición */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Efecto misterioso */
+}
+
+/* Mostrar el @benoiti cuando el ratón pasa por la imagen */
+.profile-pic:hover + .discord-handle {
+    opacity: 1; /* Hacemos visible el texto */
+    transform: translateY(0); /* Vuelve a su posición original */
+}
+
+/* Estilo para la descripción */
+.description {
+    color: #e0e0e0;
+    font-size: 18px;
+    margin-top: 10px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    opacity: 0; /* Inicialmente invisible */
+    animation: typing 4s steps(40) 1s forwards, fadeIn 2s ease 5s forwards; /* Efecto de escribir y luego desvanecerse */
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+}
+
+/* Animación para el efecto de escribir */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* Animación para desvanecer la descripción */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Estilo para la imagen de perfil */
+.profile-pic {
+    display: block;
+    margin: 20px auto;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    position: relative;
+    border: 4px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 
+        0 0 15px rgba(0, 0, 0, 0.8),
+        0 0 25px rgba(255, 255, 255, 0.8),
+        0 0 35px rgba(255, 255, 255, 0.6),
+        0 0 50px rgba(0, 0, 0, 0.7);
+    opacity: 0; /* Inicialmente invisible */
+    transition: opacity 2s ease, transform 0.3s ease, filter 0.3s ease; /* Transición de opacidad, transformación y filtro */
+    filter: grayscale(50%) blur(2px); /* Efecto depresivo */
+}
+
+/* Mostrar la imagen con desvanecimiento gradual */
+.profile-pic.show {
+    opacity: 1; /* La imagen se hace visible gradualmente */
+}
+
+/* Efecto cuando el ratón pasa sobre la imagen */
+.profile-pic:hover {
+    transform: scale(1.1); /* Agrandar la imagen */
+    filter: grayscale(0%) blur(0); /* Eliminar el desenfoque y restaurar los colores */
+    box-shadow: 
+        0 0 25px rgba(0, 0, 0, 0.8),
+        0 0 35px rgba(255, 255, 255, 1),
+        0 0 45px rgba(255, 255, 255, 1); /* Aumentar la sombra al hacer hover */
+}
+
+/* Estilo para el título con efecto misterioso y depresivo */
+h1 {
+    color: #e0e0e0;
+    font-size: 48px;
+    font-family: 'Courier New', Courier, monospace;
+    text-shadow: 
+        2px 2px 8px rgba(0, 0, 0, 0.9), 
+        0 0 25px rgba(255, 255, 255, 0.8),
+        0 0 50px rgba(255, 255, 255, 0.9),
+        0 0 70px rgba(0, 0, 0, 0.8);
+    opacity: 0; /* Inicialmente invisible */
+    animation: fadeInOut 4s ease-in-out, shake 2s infinite alternate; /* Dos animaciones */
+    transition: opacity 2s ease;
+}
+
+/* Animación de desvanecimiento para crear un efecto de aparición y desaparición */
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px); /* Desplazamiento hacia arriba al inicio */
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(0); /* Vuelve a su posición original */
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(30px); /* Desplazamiento hacia abajo */
+    }
+}
+
+/* Animación de parpadeo / vibración para el efecto misterioso */
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+        opacity: 0.7;
+    }
+    25% {
+        transform: translateX(-5px);
+        opacity: 1;
+    }
+    50% {
+        transform: translateX(5px);
+        opacity: 0.7;
+    }
+    75% {
+        transform: translateX(-5px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 0.7;
+    }
+}
+
+/* Mostrar los elementos con desvanecimiento */
+.container.show {
+    display: block;
+    opacity: 1;
+}
+
+/* Estilo para el contenedor */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    opacity: 0;
+    transition: opacity 1.5s ease, transform 1s ease;
+}
+
+/* Efecto de aparición de los elementos */
+h1.show {
+    opacity: 1;
+}
+
+.description.show {
+    opacity: 1;
+}
+
+.profile-pic.show {
+    opacity: 1; /* Asegura que la imagen se haga visible */
+}
+
+/* Evitar la selección de texto en toda la página */
+* {
+    user-select: none; /* Desactiva la selección de texto */
+}
+
+/* Evitar la selección de texto en el título */
+h1 {
+    user-select: none;
+}
+
+/* Evitar la selección de texto en la descripción */
+.description {
+    user-select: none;
+}
